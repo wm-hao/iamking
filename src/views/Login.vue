@@ -39,7 +39,7 @@
                                                 </v-btn>
                                             </v-col>
                                             <v-col cols="4" offset="2">
-                                                <v-btn to="/home" color="primary" block>
+                                                <v-btn color="primary" block @click="login">
                                                     登录
                                                 </v-btn>
                                             </v-col>
@@ -56,6 +56,9 @@
 </template>
 
 <script>
+
+    import {userValidate} from "../api/user/userRequest";
+
     export default {
         name: "Login",
         data() {
@@ -71,12 +74,22 @@
                     emailMatch: v => /.+@.+\..+/.test(v) || ('邮箱格式不正确'),
                 },
             }
+        },
+        methods: {
+            login: function () {
+                let param = {
+                    userName: 'abc',
+                    password: '123'
+                };
+                userValidate(param);
+                this.$router.push({path: '/home'});
+            }
         }
     }
 </script>
 
 <style scoped>
     .bg {
-        background: url("../assets/img/bg2.jpg") no-repeat;
+        /*background: url("../assets/img/bg2.jpg") no-repeat;*/
     }
 </style>

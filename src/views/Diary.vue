@@ -1,6 +1,6 @@
 <template>
     <v-row class="fill-all">
-        <v-col md="1">
+        <v-col md="2">
             <v-tabs vertical>
                 <v-tabs-slider></v-tabs-slider>
                 <v-tab>
@@ -13,7 +13,7 @@
                 </v-tab>
             </v-tabs>
         </v-col>
-        <v-col md="11">
+        <v-col md="10">
             <router-view/>
         </v-col>
     </v-row>

@@ -1,16 +1,19 @@
 <template>
     <v-app>
         <!--color="blue darken-3"-->
-        <v-app-bar app clipped-right dark prominent src="../assets/img/bar.jpg">
-            <v-row align="center" justify="center" class="fill-height">
-                <!--                <v-toolbar-title>顺势而为,请热爱生活</v-toolbar-title>-->
-                <span style="font-size: 24px;margin-left: 20px;">顺势而为,请热爱生活</span>
+        <v-app-bar app clipped-right dark src="../assets/img/bar.jpg">
+            <!--<v-row align="center" justify="center" class="fill-height">
+
+                <span style="font-size: 20px;margin-left: 20px;">顺势而为,请热爱生活</span>
                 <v-spacer/>
-                <!--<v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>-->
+
                 <v-btn class="mx-3" fab dark @click="drawer = !drawer">
-                    <v-icon dark>mdi-format-list-bulleted-square</v-icon>
+                    <v-icon>mdi-format-list-bulleted-square</v-icon>
                 </v-btn>
-            </v-row>
+            </v-row>-->
+            <v-toolbar-title>顺势而为,请热爱生活</v-toolbar-title>
+            <v-spacer/>
+            <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>
         <v-navigation-drawer v-model="drawer" app clipped right>
             <v-list-item two-line>
@@ -28,7 +31,7 @@
             <v-list>
                 <v-list-item v-for="item in items" :key="item.title" link :to="item.to" two-line>
                     <v-list-item-icon>
-                        <v-icon v-text="item.icon" size="30"></v-icon>
+                        <v-icon v-text="item.icon" size="26"></v-icon>
                     </v-list-item-icon>
                     <v-list-item-content>
                         <v-list-item-title class="text-left">{{ item.title }}</v-list-item-title>
@@ -43,9 +46,9 @@
             </template>
         </v-navigation-drawer>
         <v-content>
-<!--            <v-container ma-0 class="fill-all">-->
-                <router-view></router-view>
-<!--            </v-container>-->
+            <!--            <v-container ma-0 class="fill-all">-->
+            <router-view></router-view>
+            <!--            </v-container>-->
         </v-content>
         <v-footer app class="footer_bg">
             <span>&copy; 2020</span>
@@ -75,6 +78,10 @@
         watch: {},
 
         created() {
+            this.$toast.error('欢迎', {
+                x: '',
+                y: 'top'
+            });
         },
 
         methods: {},

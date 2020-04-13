@@ -1,0 +1,2 @@
+export const HTTP_RESPONSE_SUCCESS_CODE = 1;
+export const HTTP_RESPONSE_FAIL_CODE = 0;
