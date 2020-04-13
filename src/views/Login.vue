@@ -81,15 +81,24 @@
                     userName: 'abc',
                     password: '123'
                 };
-                userValidate(param);
-                this.$router.push({path: '/home'});
-            }
+                userValidate(param, success, error, error);
+
+            },
+
         }
+    }
+
+    function success() {
+        this.$router.push({path: '/home'});
+    }
+
+    function error() {
+        console.log("登录失败")
     }
 </script>
 
 <style scoped>
     .bg {
-        /*background: url("../assets/img/bg2.jpg") no-repeat;*/
+        background: url("../assets/img/bg2.jpg") no-repeat;
     }
 </style>

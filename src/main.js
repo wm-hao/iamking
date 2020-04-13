@@ -3,15 +3,18 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify';
-
+import http from "./api/http";
 import VuetifyToast from "vuetify-toast-snackbar";
 
 
-Vue.use(VuetifyToast);
+Vue.use(VuetifyToast, {
+    x: '',
+    y: 'top'
+});
 Vue.config.productionTip = false;
-import http from "./api/http";
+
 Vue.prototype.$http = http;
-new Vue({
+window.vm = new Vue({
     router,
     store,
     vuetify,

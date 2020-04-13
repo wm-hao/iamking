@@ -78,10 +78,6 @@
         watch: {},
 
         created() {
-            this.$toast.error('欢迎', {
-                x: '',
-                y: 'top'
-            });
         },
 
         methods: {},
