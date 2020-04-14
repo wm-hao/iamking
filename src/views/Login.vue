@@ -1,67 +1,67 @@
 <template>
     <v-app class="fill-all">
-        <v-content class="fill-all">
+        <v-content class="fill-all bg">
             <v-row align="center" justify="center" class="fill-height">
-                <v-img src="../assets/img/bar.jpg" max-height="1170px" :aspect-ratio="16/9">
-                    <v-col md="6" offset-md="3" class="fill-height pa-0">
-                        <v-row align="center" justify="center" class="fill-height">
-                            <v-col md="6">
-                                <v-card class="mx-auto elevation-9" outlined>
-                                    <v-toolbar color="primary" dark flat>
-                                        <v-toolbar-title>Login form</v-toolbar-title>
-                                    </v-toolbar>
-                                    <v-card-text>
-                                        <v-form ref="loginForm">
-                                            <v-text-field
-                                                    name="login"
-                                                    prepend-icon="mdi-account"
-                                                    :rules="[rules.required]"
-                                                    type="text"
-                                                    v-model="user.userName"
-                                            />
+                <!--                <v-img src="../assets/img/bar.jpg" max-height="1170px" :aspect-ratio="16/9">-->
+                <v-col md="6" class="fill-height pa-0">
+                    <v-row align="center" justify="center" class="fill-height">
+                        <v-col md="6">
+                            <v-card class="mx-auto elevation-9" outlined>
+                                <v-toolbar color="primary" dark flat>
+                                    <v-toolbar-title>Login form</v-toolbar-title>
+                                </v-toolbar>
+                                <v-card-text>
+                                    <v-form ref="loginForm">
+                                        <v-text-field
+                                                name="login"
+                                                prepend-icon="mdi-account"
+                                                :rules="[rules.required]"
+                                                type="text"
+                                                v-model="user.userName"
+                                        />
 
-                                            <v-text-field
-                                                    name="password"
-                                                    prepend-icon="mdi-lock"
-                                                    :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                                                    :rules="[rules.required, rules.min]"
-                                                    :type="showPassword ? 'text' : 'password'"
-                                                    v-model="user.password"
-                                                    @click:append="showPassword = !showPassword"
-                                            />
-                                        </v-form>
-                                    </v-card-text>
-                                    <v-card-actions class="pa-0">
-                                        <v-row class="fill-all" justify="start">
-                                            <v-col cols="12">
-                                                <v-row>
-                                                    <v-col cols="6" offset="1" class="py-0">
-                                                        <v-switch v-model="rememberPassword" label="记住密码"
-                                                                  class="pa-0"
-                                                                  dense></v-switch>
-                                                    </v-col>
-                                                </v-row>
-                                                <v-row>
-                                                    <v-col cols="4" offset="1">
-                                                        <v-btn to="/home" block>
-                                                            注册
-                                                        </v-btn>
-                                                    </v-col>
-                                                    <v-col cols="4" offset="2">
-                                                        <v-btn color="primary" block @click="login">
-                                                            登录
-                                                        </v-btn>
-                                                    </v-col>
-                                                </v-row>
-                                            </v-col>
+                                        <v-text-field
+                                                name="password"
+                                                prepend-icon="mdi-lock"
+                                                :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
+                                                :rules="[rules.required, rules.min]"
+                                                :type="showPassword ? 'text' : 'password'"
+                                                v-model="user.password"
+                                                @click:append="showPassword = !showPassword"
+                                        />
+                                    </v-form>
+                                </v-card-text>
+                                <v-card-actions class="pa-0">
+                                    <v-row class="fill-all" justify="start">
+                                        <v-col cols="12">
+                                            <v-row>
+                                                <v-col cols="6" offset="1" class="py-0">
+                                                    <v-switch v-model="rememberPassword" label="记住密码"
+                                                              class="pa-0"
+                                                              dense></v-switch>
+                                                </v-col>
+                                            </v-row>
+                                            <v-row>
+                                                <v-col cols="4" offset="1">
+                                                    <v-btn to="/home" block>
+                                                        注册
+                                                    </v-btn>
+                                                </v-col>
+                                                <v-col cols="4" offset="2">
+                                                    <v-btn color="primary" block @click="login">
+                                                        登录
+                                                    </v-btn>
+                                                </v-col>
+                                            </v-row>
+                                        </v-col>
 
-                                        </v-row>
-                                    </v-card-actions>
-                                </v-card>
-                            </v-col>
-                        </v-row>
-                    </v-col>
-                </v-img>
+                                    </v-row>
+                                </v-card-actions>
+                            </v-card>
+                        </v-col>
+                    </v-row>
+                </v-col>
+                <!--         </v-img>-->
             </v-row>
         </v-content>
     </v-app>
@@ -137,4 +137,8 @@
 </script>
 
 <style scoped>
+    .bg {
+        background: url("../assets/img/bar.jpg") no-repeat;
+        background-size: 100% 100%;
+    }
 </style>
