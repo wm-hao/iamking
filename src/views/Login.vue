@@ -1,11 +1,11 @@
 <template>
-    <v-app class="bg">
-        <v-content>
-            <v-container fluid class="fill-height">
-                <v-row align="center" justify="center">
-                    <v-col cols="12" md="6">
-                        <v-row align="center" justify="center">
-                            <v-col cols="7">
+    <v-app class="fill-all">
+        <v-content class="fill-all">
+            <v-row align="center" justify="center" class="fill-height">
+                <v-img src="../assets/img/bar.jpg" max-height="1170px" :aspect-ratio="16/9">
+                    <v-col md="6" offset-md="3" class="fill-height pa-0">
+                        <v-row align="center" justify="center" class="fill-height">
+                            <v-col md="6">
                                 <v-card class="mx-auto elevation-9" outlined>
                                     <v-toolbar color="primary" dark flat>
                                         <v-toolbar-title>Login form</v-toolbar-title>
@@ -34,9 +34,10 @@
                                     <v-card-actions class="pa-0">
                                         <v-row class="fill-all" justify="start">
                                             <v-col cols="12">
-                                                <v-row style="height: 60px" class="mb-1">
+                                                <v-row>
                                                     <v-col cols="6" offset="1" class="py-0">
-                                                        <v-switch v-model="rememberPassword" label="记住密码" class="pa-0"
+                                                        <v-switch v-model="rememberPassword" label="记住密码"
+                                                                  class="pa-0"
                                                                   dense></v-switch>
                                                     </v-col>
                                                 </v-row>
@@ -60,8 +61,8 @@
                             </v-col>
                         </v-row>
                     </v-col>
-                </v-row>
-            </v-container>
+                </v-img>
+            </v-row>
         </v-content>
     </v-app>
 </template>
@@ -136,7 +137,4 @@
 </script>
 
 <style scoped>
-    .bg {
-        background: url("../assets/img/bar.jpg") no-repeat;
-    }
 </style>
