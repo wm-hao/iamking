@@ -17,7 +17,6 @@
             <router-view/>
         </v-col>
     </v-row>
-
 </template>
 
 <script>

@@ -5,7 +5,9 @@ import store from './store'
 import vuetify from './plugins/vuetify';
 import http from "./api/http";
 import VuetifyToast from "vuetify-toast-snackbar";
+import VueCookies from 'vue-cookies'
 
+Vue.use(VueCookies);
 
 Vue.use(VuetifyToast, {
     x: '',

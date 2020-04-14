@@ -2,15 +2,6 @@
     <v-app>
         <!--color="blue darken-3"-->
         <v-app-bar app clipped-right dark src="../assets/img/bar.jpg">
-            <!--<v-row align="center" justify="center" class="fill-height">
-
-                <span style="font-size: 20px;margin-left: 20px;">顺势而为,请热爱生活</span>
-                <v-spacer/>
-
-                <v-btn class="mx-3" fab dark @click="drawer = !drawer">
-                    <v-icon>mdi-format-list-bulleted-square</v-icon>
-                </v-btn>
-            </v-row>-->
             <v-toolbar-title>顺势而为,请热爱生活</v-toolbar-title>
             <v-spacer/>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -22,7 +13,7 @@
                 </v-list-item-avatar>
 
                 <v-list-item-content>
-                    <v-list-item-title>zhuhh</v-list-item-title>
+                    <v-list-item-title>{{userName}}</v-list-item-title>
                     <v-list-item-subtitle>您好</v-list-item-subtitle>
                 </v-list-item-content>
             </v-list-item>
@@ -41,7 +32,7 @@
 
             <template v-slot:append>
                 <div class="pa-3">
-                    <v-btn block class="text-center" to="/">退出</v-btn>
+                    <v-btn block class="text-center" @click="logout">退出</v-btn>
                 </div>
             </template>
         </v-navigation-drawer>
@@ -59,6 +50,9 @@
 <script>
 
 
+    import {HTTP_HEADER_TOKEN_VAL, USER_ID, USER_NAME} from "../const/constant";
+    import {removePrefix} from "../util/util";
+
     export default {
         name: 'Home',
         components: {},
@@ -71,16 +65,28 @@
                 {title: '资金管理', icon: 'account_balance_wallet', to: '/home/balance'},
                 {title: '用户信息', icon: 'account_box', to: '/home/user'},
             ],
+            userName: ''
         }),
+
+        methods: {
+            logout: function () {
+                sessionStorage.clear();
+                this.$router.replace('/');
+            }
+        },
+
+        created() {
+            console.log(sessionStorage.getItem(USER_ID));
+            console.log(sessionStorage.getItem(HTTP_HEADER_TOKEN_VAL));
+            console.log(localStorage.getItem(USER_NAME));
+            this.userName = removePrefix(localStorage.getItem(USER_NAME));
+            console.log(localStorage.getItem(localStorage.getItem(USER_NAME)));
+        },
 
         computed: {},
 
-        watch: {},
+        watch: {}
 
-        created() {
-        },
-
-        methods: {},
     }
 </script>
 
