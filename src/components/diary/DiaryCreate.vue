@@ -3,7 +3,7 @@
             :headers="headers"
             :items="desserts"
             sort-by="calories"
-            class="elevation-1 fill-all"
+            class="elevation-1 fill-height"
     >
         <template v-slot:top>
             <v-toolbar flat color="white">

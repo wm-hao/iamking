@@ -2,10 +2,9 @@
     <v-app class="fill-all">
         <v-content class="fill-all bg">
             <v-row align="center" justify="center" class="fill-height">
-                <!--                <v-img src="../assets/img/bar.jpg" max-height="1170px" :aspect-ratio="16/9">-->
-                <v-col md="6" class="fill-height pa-0">
+                <v-col md="4" lg="6" class="fill-height pa-0">
                     <v-row align="center" justify="center" class="fill-height">
-                        <v-col md="6">
+                        <v-col md="8" lg="6">
                             <v-card class="mx-auto elevation-9" outlined>
                                 <v-toolbar color="primary" dark flat>
                                     <v-toolbar-title>Login form</v-toolbar-title>
@@ -61,7 +60,6 @@
                         </v-col>
                     </v-row>
                 </v-col>
-                <!--         </v-img>-->
             </v-row>
         </v-content>
     </v-app>

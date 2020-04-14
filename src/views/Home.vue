@@ -2,7 +2,13 @@
     <v-app>
         <!--color="blue darken-3"-->
         <v-app-bar app clipped-right dark src="../assets/img/bar.jpg">
-            <v-toolbar-title>顺势而为,请热爱生活</v-toolbar-title>
+            <v-toolbar-title><span style="font-size: 20px">顺势而为,请热爱生活</span>&nbsp;
+                <v-icon color="red">mdi-heart</v-icon>
+                <v-icon color="red">mdi-heart</v-icon>
+                <v-icon color="red">mdi-heart</v-icon>
+                &nbsp;
+                加油！思密达
+            </v-toolbar-title>
             <v-spacer/>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
         </v-app-bar>

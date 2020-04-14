@@ -34,7 +34,7 @@ const routes = [
                     },
                     {
                         path: '/home/record/qry',
-                        name: 'RecordCreate',
+                        name: 'RecordQry',
                         component: RecordQry,
                         children: [
                             {
