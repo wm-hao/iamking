@@ -2,7 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login";
-import Record from "../views/Record";
 import Diary from "../views/Diary";
 import Analyse from "../views/Analyse";
 import Balance from "../views/Balance";
@@ -10,9 +9,9 @@ import User from "../views/User";
 import DiaryCreate from "../components/diary/DiaryCreate";
 import {HTTP_HEADER_TOKEN_VAL} from "../const/constant";
 import RecordCreate from "../components/record/RecordCreate";
-import RecordQry from "../components/record/RecordQry";
 import RecordProfitQry from "../components/record/RecordProfitQry";
 import RecordHistoryQry from "../components/record/RecordHistoryQry";
+import Record from "../components/record/Record";
 
 Vue.use(VueRouter)
 
@@ -23,32 +22,25 @@ const routes = [
         component: Home,
         children: [
             {
-                path: '/home/record',
+                path: '/home/record/qry',
                 name: 'Record',
                 component: Record,
                 children: [
+                    {
+                        path: '/home/record/qry/history',
+                        name: 'RecordHistoryQry',
+                        component: RecordHistoryQry,
+                    },
+                    {
+                        path: '/home/record/qry/profit',
+                        name: 'RecordProfitQry',
+                        component: RecordProfitQry,
+                    },
                     {
                         path: '/home/record/create',
                         name: 'RecordCreate',
                         component: RecordCreate,
                     },
-                    {
-                        path: '/home/record/qry',
-                        name: 'RecordQry',
-                        component: RecordQry,
-                        children: [
-                            {
-                                path: '/home/record/qry/history',
-                                name: 'RecordHistoryQry',
-                                component: RecordHistoryQry,
-                            },
-                            {
-                                path: '/home/record/qry/profit',
-                                name: 'RecordProfitQry',
-                                component: RecordProfitQry,
-                            }
-                        ]
-                    }
                 ]
             },
             {
