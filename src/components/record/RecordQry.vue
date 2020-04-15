@@ -2,7 +2,7 @@
     <v-row class="fill-height ma-0">
         <v-col cols="12">
             <v-row>
-                <v-tabs right>
+                <v-tabs>
                     <v-tabs-slider></v-tabs-slider>
                     <v-tab to="/home/record/qry/history">
                         <v-icon>list</v-icon>

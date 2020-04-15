@@ -6,8 +6,6 @@
                 <v-icon color="red">mdi-heart</v-icon>
                 <v-icon color="red">mdi-heart</v-icon>
                 <v-icon color="red">mdi-heart</v-icon>
-                &nbsp;
-                加油！思密达
             </v-toolbar-title>
             <v-spacer/>
             <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
@@ -66,7 +64,7 @@
             drawer: false,
             items: [
                 {title: '日志记录', icon: 'assignment', to: '/home/diary'},
-                {title: '交易记录', icon: 'poll', to: '/home/record'},
+                {title: '交易记录', icon: 'poll', to: '/home/record/qry/history'},
                 {title: '数据分析', icon: 'show_chart', to: '/home/analyse'},
                 {title: '资金管理', icon: 'account_balance_wallet', to: '/home/balance'},
                 {title: '用户信息', icon: 'account_box', to: '/home/user'},
