@@ -114,12 +114,14 @@
                     :server-items-length="total"
                     :options.sync="options"
                     :page.sync="page"
-                    @update:page="updatePage"
+                    :items-per-page.sync="perPage"
+                    @update:items-per-page="query"
+                    @update:page="query"
             >
                 <template v-slot:top>
                     <v-row>
                         <v-col lg="2" style="text-align: start">
-                            <v-dialog v-model="dialog" max-width="500px">
+                            <v-dialog v-model="dialog" max-width="600px">
                                 <template v-slot:activator="{ on }">
                                     <v-btn color="primary" class="ma-2" v-on="on">新增记录</v-btn>
                                 </template>
@@ -196,7 +198,7 @@
 </template>
 
 <script>
-    import {historyQryPagination, recordDelete} from "../../api/record/recordRequest";
+    import {historyQryPagination, recordDelete, recordSave, recordUpdate} from "../../api/record/recordRequest";
 
     export default {
         name: "RecordHistoryQry",
@@ -205,6 +207,7 @@
                 menu: false,
                 menu2: false,
                 tableData: [],
+                perPage: 10,
                 page: 1,
                 total: 0,
                 options: {},
@@ -285,9 +288,6 @@
             }
         },
         methods: {
-            updatePage: function () {
-                this.fetchData(this.page);
-            },
             assembleData: function (rows) {
                 this.records.splice(0, this.records.length);
                 for (let index in rows) {
@@ -295,11 +295,11 @@
                 }
             },
             query: function () {
-                this.fetchData(this.page);
+                this.fetchData(this.page, this.perPage);
             },
-            fetchData: function (pageNum) {
+            fetchData: function (pageNum, pageSize) {
                 let self = this;
-                this.qryParams.pageSize = 10;
+                this.qryParams.pageSize = pageSize;
                 this.qryParams.pageNum = pageNum;
                 historyQryPagination(this.qryParams, (json) => {
                     self.assembleData(json.rows);
@@ -309,14 +309,13 @@
                 });
             },
             initialize() {
-                this.fetchData(1);
+                this.query();
             },
 
             editItem(item) {
                 this.editedIndex = this.records.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
-                console.log(this.editedItem);
             },
 
             deleteItem(item) {
@@ -337,16 +336,29 @@
             close() {
                 this.dialog = false
                 setTimeout(() => {
-                    this.editedItem = Object.assign({}, this.defaultItem)
-                    this.editedIndex = -1
+                    this.editedItem = Object.assign({}, this.defaultItem);
+                    this.editedIndex = -1;
                 }, 300)
             },
 
             save() {
+                let self = this;
                 if (this.editedIndex > -1) {
-                    Object.assign(this.records[this.editedIndex], this.editedItem)
+                    recordUpdate(self.editedItem, (json) => {
+                        Object.assign(self.records[self.editedIndex], self.editedItem);
+                        self.$toast.success(json.message);
+                    }, (json) => {
+                        self.$toast.error(json.message);
+                    });
+
                 } else {
-                    this.records.push(this.editedItem)
+                    recordSave(self.editedItem, (json) => {
+                        self.records.push(self.editedItem);
+                        self.$toast.success(json.message);
+                    }, (json) => {
+                        self.$toast.error(json.message);
+                    });
+
                 }
                 this.close()
             },

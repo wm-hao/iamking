@@ -40,14 +40,12 @@
                 </div>
             </template>
         </v-navigation-drawer>
-        <v-content>
-            <!--            <v-container ma-0 class="fill-all">-->
+        <v-content class="fill-height">
             <router-view></router-view>
-            <!--            </v-container>-->
         </v-content>
-        <v-footer app class="footer_bg">
+       <!-- <v-footer class="footer_bg" inset>
             <span>&copy; 2020</span>
-        </v-footer>
+        </v-footer>-->
     </v-app>
 </template>
 

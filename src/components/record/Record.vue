@@ -12,8 +12,8 @@
                     <span style="font-size: 16px">盈利查询</span>
                 </v-tab>
                 <v-tab to="/home/record/create">
-                    <v-icon>list</v-icon>
-                    <span style="font-size: 16px">新增记录</span>
+                    <v-icon>add_box</v-icon>
+                    <span style="font-size: 16px">导入记录</span>
                 </v-tab>
             </v-tabs>
             <v-row class="fill-height">
