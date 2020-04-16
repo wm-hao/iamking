@@ -106,7 +106,7 @@
                 </v-form>
             </v-card>
             <v-data-table
-                    style="width: 100%"
+                    style="width: 100%;max-height: 900px;overflow-y: scroll;overflow-x: hidden"
                     :headers="headers"
                     :items="records"
                     sort-by="calories"

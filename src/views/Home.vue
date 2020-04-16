@@ -43,9 +43,9 @@
         <v-content class="fill-height">
             <router-view></router-view>
         </v-content>
-       <!-- <v-footer class="footer_bg" inset>
+        <v-footer class="footer_bg" inset >
             <span>&copy; 2020</span>
-        </v-footer>-->
+        </v-footer>
     </v-app>
 </template>
 
