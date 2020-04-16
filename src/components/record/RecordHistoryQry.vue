@@ -196,7 +196,7 @@
 </template>
 
 <script>
-    import {historyQryPagination} from "../../api/record/recordRequest";
+    import {historyQryPagination, recordDelete} from "../../api/record/recordRequest";
 
     export default {
         name: "RecordHistoryQry",
@@ -261,6 +261,7 @@
                 records: [],
                 editedIndex: -1,
                 editedItem: {
+                    id: null,
                     name: '',
                     alias: '',
                     code: '',
@@ -271,6 +272,7 @@
                     sellTime: ''
                 },
                 defaultItem: {
+                    id: null,
                     name: '',
                     alias: '',
                     code: '',
@@ -293,7 +295,7 @@
                 }
             },
             query: function () {
-                console.log(this.qryParams);
+                this.fetchData(this.page);
             },
             fetchData: function (pageNum) {
                 let self = this;
@@ -314,11 +316,22 @@
                 this.editedIndex = this.records.indexOf(item)
                 this.editedItem = Object.assign({}, item)
                 this.dialog = true
+                console.log(this.editedItem);
             },
 
             deleteItem(item) {
+                let self = this;
                 const index = this.records.indexOf(item)
-                confirm('你确定想要删除此项记录吗?') && this.records.splice(index, 1)
+                if (confirm('你确定想要删除此项记录吗?')) {
+                    this.records.splice(index, 1);
+                    console.log("删除的ID:" + item.id);
+                    recordDelete({id: item.id}, (json) => {
+                        self.$toast.success(json.message);
+                    }, ((json) => {
+                        self.$toast.error(json.message);
+                    }))
+                }
+
             },
 
             close() {
@@ -353,6 +366,7 @@
         created() {
             this.initialize();
             console.log("初始化");
+            console.log(this.records);
         },
     }
 </script>

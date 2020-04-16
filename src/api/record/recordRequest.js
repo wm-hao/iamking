@@ -15,3 +15,10 @@ export function recordUpdate(params, success, fail, err) {
     }
     return post("share/update", params, success, fail, err);
 }
+
+export function recordDelete(params, success, fail, err) {
+    if (params) {
+        params.userId = sessionStorage.getItem(USER_ID);
+    }
+    return post("share/delete", params, success, fail, err);
+}
