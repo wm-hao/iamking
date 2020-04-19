@@ -5,7 +5,6 @@ export function historyQryPagination(params, success, fail, err) {
     if (params) {
         params.userId = sessionStorage.getItem(USER_ID);
     }
-    console.log(JSON.stringify(params));
     return post("share/list/page", params, success, fail, err);
 }
 
@@ -28,4 +27,11 @@ export function recordSave(params, success, fail, err) {
         params.userId = sessionStorage.getItem(USER_ID);
     }
     return post("share/insert", params, success, fail, err);
+}
+
+export function recordProfitQry(params, success, fail, err) {
+    if (params) {
+        params.userId = sessionStorage.getItem(USER_ID);
+    }
+    return post("share/profit", params, success, fail, err);
 }

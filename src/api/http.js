@@ -1,5 +1,6 @@
 import axios from 'axios'
 import {HTTP_HEADER_TOKEN_KEY, HTTP_HEADER_TOKEN_VAL, HTTP_RESPONSE_SUCCESS_CODE, USER_ID} from "../const/constant";
+import {Message} from "element-ui";
 
 const http = axios.create({
     baseURL: 'http://localhost:11111/',
@@ -19,6 +20,9 @@ http.interceptors.request.use(
     },
     error => {
         window.vm.$toast.error(error.message || '后台服务错误');
+        Message({
+            message: '错误'
+        });
         return Promise.reject(error);
     });
 

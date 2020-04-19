@@ -2,16 +2,20 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from "../views/Login";
-import Diary from "../views/Diary";
-import Analyse from "../views/Analyse";
+import Diary from "../components/diary/Diary";
+import Analyse from "../components/analyse/Analyse";
 import Balance from "../views/Balance";
 import User from "../views/User";
-import DiaryCreate from "../components/diary/DiaryCreate";
 import {HTTP_HEADER_TOKEN_VAL} from "../const/constant";
 import RecordCreate from "../components/record/RecordCreate";
 import RecordProfitQry from "../components/record/RecordProfitQry";
 import RecordHistoryQry from "../components/record/RecordHistoryQry";
 import Record from "../components/record/Record";
+import DiarySelect from "../components/diary/DiarySelect";
+import AnalyseFrequency from "../components/analyse/AnalyseFrequency";
+import AnalyseTopData from "../components/analyse/AnalyseTopData";
+import AnalyseProfit from "../components/analyse/AnalyseProfit";
+import AnalyseDuration from "../components/analyse/AnalyseDuration";
 
 Vue.use(VueRouter)
 
@@ -49,9 +53,9 @@ const routes = [
                 component: Diary,
                 children: [
                     {
-                        path: '/home/diary/create',
-                        name: 'DiaryCreate',
-                        component: DiaryCreate,
+                        path: '/home/diary/select',
+                        name: 'DiarySelect',
+                        component: DiarySelect,
                     }
                 ]
             },
@@ -59,6 +63,28 @@ const routes = [
                 path: '/home/analyse',
                 name: 'Analyse',
                 component: Analyse,
+                children: [
+                    {
+                        path: '/home/analyse/frequency',
+                        name: 'AnalyseFrequency',
+                        component: AnalyseFrequency,
+                    },
+                    {
+                        path: '/home/analyse/top',
+                        name: 'AnalyseTopData',
+                        component: AnalyseTopData,
+                    },
+                    {
+                        path: '/home/analyse/profit',
+                        name: 'AnalyseProfit',
+                        component: AnalyseProfit,
+                    },
+                    {
+                        path: '/home/analyse/duration',
+                        name: 'AnalyseDuration',
+                        component: AnalyseDuration,
+                    }
+                ]
             },
             {
                 path: '/home/balance',

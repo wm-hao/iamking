@@ -40,10 +40,10 @@
                 </div>
             </template>
         </v-navigation-drawer>
-        <v-content class="fill-height">
+        <v-content style="width: 100%;max-height: 90%;overflow: hidden;min-height: 800px">
             <router-view></router-view>
         </v-content>
-        <v-footer class="footer_bg" inset >
+        <v-footer class="footer_bg" app>
             <span>&copy; 2020</span>
         </v-footer>
     </v-app>
@@ -59,11 +59,11 @@
         name: 'Home',
         components: {},
         data: () => ({
-            drawer: false,
+            drawer: true,
             items: [
-                {title: '日志记录', icon: 'assignment', to: '/home/diary'},
+                {title: '日志管理', icon: 'assignment', to: '/home/diary/select'},
                 {title: '交易记录', icon: 'poll', to: '/home/record/qry/history'},
-                {title: '数据分析', icon: 'show_chart', to: '/home/analyse'},
+                {title: '数据分析', icon: 'show_chart', to: '/home/analyse/frequency'},
                 {title: '资金管理', icon: 'account_balance_wallet', to: '/home/balance'},
                 {title: '用户信息', icon: 'account_box', to: '/home/user'},
             ],
@@ -78,11 +78,7 @@
         },
 
         created() {
-            console.log(sessionStorage.getItem(USER_ID));
-            console.log(sessionStorage.getItem(HTTP_HEADER_TOKEN_VAL));
-            console.log(localStorage.getItem(USER_NAME));
             this.userName = removePrefix(localStorage.getItem(USER_NAME));
-            console.log(localStorage.getItem(localStorage.getItem(USER_NAME)));
         },
 
         computed: {},

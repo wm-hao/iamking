@@ -106,10 +106,10 @@
                 </v-form>
             </v-card>
             <v-data-table
-                    style="width: 100%;max-height: 900px;overflow-y: scroll;overflow-x: hidden"
+                    :no-data-text="noData"
+                    style="width: 100%;overflow-y: auto;overflow-x: hidden"
                     :headers="headers"
                     :items="records"
-                    sort-by="calories"
                     class="elevation-4 mt-2"
                     :server-items-length="total"
                     :options.sync="options"
@@ -147,11 +147,11 @@
                                                 </v-col>
                                                 <v-col cols="12" sm="6" md="4">
                                                     <v-text-field v-model="editedItem.buyPrice"
-                                                                  label="买入价格/元"></v-text-field>
+                                                                  label="买入价格"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="6" md="4">
                                                     <v-text-field v-model="editedItem.sellPrice"
-                                                                  label="卖出价格/元"></v-text-field>
+                                                                  label="卖出价格"></v-text-field>
                                                 </v-col>
                                                 <v-col cols="12" sm="6" md="4">
                                                     <v-text-field v-model="editedItem.buyTime"
@@ -188,9 +188,9 @@
                         mdi-delete
                     </v-icon>
                 </template>
-                <template v-slot:no-data>
-                    <v-btn color="primary" @click="initialize">重置数据</v-btn>
-                </template>
+<!--                <template v-slot:no-data>-->
+<!--                    <v-btn color="primary" @click="initialize">重置数据</v-btn>-->
+<!--                </template>-->
             </v-data-table>
         </v-col>
     </v-row>
@@ -204,6 +204,7 @@
         name: "RecordHistoryQry",
         data() {
             return {
+                noData: '暂无数据',
                 menu: false,
                 menu2: false,
                 tableData: [],
@@ -216,7 +217,7 @@
                     profit: '',
                     endDate: '',
                     startDate: '',
-                    asc: '',
+                    asc: 'N',
                     code: '',
                     name: '',
                     alias: ''
@@ -254,8 +255,8 @@
                     },
                     {text: '股票别名', value: 'alias'},
                     {text: '股票代码', value: 'code'},
-                    {text: '买入价格/元', value: 'buyPrice'},
-                    {text: '卖出价格/元', value: 'sellPrice'},
+                    {text: '买入价格', value: 'buyPrice'},
+                    {text: '卖出价格', value: 'sellPrice'},
                     {text: '买入时间', value: 'buyTime'},
                     {text: '卖出时间', value: 'sellTime'},
                     {text: '交易数量/股', value: 'buyCount'},
@@ -323,7 +324,6 @@
                 const index = this.records.indexOf(item)
                 if (confirm('你确定想要删除此项记录吗?')) {
                     this.records.splice(index, 1);
-                    console.log("删除的ID:" + item.id);
                     recordDelete({id: item.id}, (json) => {
                         self.$toast.success(json.message);
                     }, ((json) => {
@@ -377,8 +377,6 @@
 
         created() {
             this.initialize();
-            console.log("初始化");
-            console.log(this.records);
         },
     }
 </script>

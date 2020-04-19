@@ -1,16 +1,16 @@
-import {HTTP_RESPONSE_SUCCESS_CODE} from "../../const/constant";
+import {USER_ID} from "../../const/constant";
+import {post} from "../http";
 
-export function validate(param, json, success, fail, err) {
-    this.$http.post('daily/select', param).then(
-        function (response) {
-            if (response.data.code === HTTP_RESPONSE_SUCCESS_CODE) {
-                success(json);
-            } else {
-                fail(json);
-            }
-        }
-    ).catch(function (error) {
-        console.log(error);
-        err(error);
-    })
+export function diarySelect(params, success, fail, err) {
+    if (params) {
+        params.userId = sessionStorage.getItem(USER_ID);
+    }
+    return post("daily/select", params, success, fail, err);
+}
+
+export function diaryUpdate(params, success, fail, err) {
+    if (params) {
+        params.userId = sessionStorage.getItem(USER_ID);
+    }
+    return post("daily/update", params, success, fail, err);
 }

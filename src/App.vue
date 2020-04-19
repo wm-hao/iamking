@@ -11,6 +11,7 @@
 </script>
 
 <style>
+    @import "assets/css/self.css";
     #app {
         font-family: Avenir, Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
