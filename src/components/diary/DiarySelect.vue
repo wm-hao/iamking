@@ -9,12 +9,43 @@
                                 <v-row justify="start">
                                     <v-col cols="1">
                                         <v-icon @click="prevPage">mdi-arrow-left-bold</v-icon>
-
                                     </v-col>
                                 </v-row>
                             </v-col>
                             <v-col cols="4">
+                                <v-row justify="center">
+                                    <v-col cols="6">
+                                        <v-dialog v-model="addDialog" max-width="600px">
+                                            <template v-slot:activator="{ on }">
+                                                <v-btn color="primary" class="ma-2" v-on="on">添加日志</v-btn>
+                                            </template>
+                                            <v-card elevation="24">
+                                                <v-card-title>
+                                                    <span>日志添加</span>
+                                                </v-card-title>
 
+                                                <v-card-text>
+                                                    <v-row>
+                                                        <v-col cols="12">
+                                                            <v-textarea v-model="newIdea" counter clearable>
+
+                                                            </v-textarea>
+                                                        </v-col>
+                                                    </v-row>
+                                                </v-card-text>
+
+                                                <v-card-actions>
+                                                    <v-spacer></v-spacer>
+                                                    <v-btn color="blue darken-1" text @click="close(true)">取消</v-btn>
+                                                    <v-btn color="blue darken-1" text @click="save(true)">保存</v-btn>
+                                                </v-card-actions>
+                                            </v-card>
+                                        </v-dialog>
+                                    </v-col>
+                                    <v-col cols="6">
+                                        <v-btn text>刷新</v-btn>
+                                    </v-col>
+                                </v-row>
                             </v-col>
                             <v-col cols="4">
                                 <v-row justify="end">
@@ -26,7 +57,7 @@
                         </v-row>
                     </v-col>
                 </v-row>
-                <v-carousel v-model="model" :height="height * 0.6">
+                <v-carousel v-model="model" :height="height * 0.6" class="ml-1">
                     <v-carousel-item v-for="(record, i) in records" :key="record.id">
                         <v-row class="fill-height" align="center" justify="center">
                             <v-card class="mx-0 fill-height" style="overflow-y: scroll;overflow-x: hidden;width: 100%">
@@ -34,7 +65,7 @@
                                        :src="images[((Number(record.id) + 1) %(images.length))]">
                                     <v-card-title>每日日志-{{record.createDate.substr(0, 10)}}</v-card-title>
                                 </v-img>
-                                <v-card-subtitle class="align-start">创建于{{record.createDate}}</v-card-subtitle>
+                                <v-card-subtitle class="align-start">更新于{{record.createDate}}</v-card-subtitle>
 
                                 <v-card-text class="text-start">
                                     <div>{{ record.idea}}</div>
@@ -60,8 +91,10 @@
                                                     </v-card-text>
                                                     <v-card-actions>
                                                         <v-spacer></v-spacer>
-                                                        <v-btn color="green darken-1" text @click="close">取消</v-btn>
-                                                        <v-btn color="green darken-1" text @click="save">保存</v-btn>
+                                                        <v-btn color="green darken-1" text @click="close(false)">取消
+                                                        </v-btn>
+                                                        <v-btn color="green darken-1" text @click="save(false)">保存
+                                                        </v-btn>
                                                     </v-card-actions>
                                                 </v-card>
                                             </v-dialog>
@@ -79,7 +112,7 @@
 </template>
 
 <script>
-    import {diarySelect, diaryUpdate} from "../../api/diary/diaryRequest";
+    import {diaryInsert, diarySelect, diaryUpdate} from "../../api/diary/diaryRequest";
     import jpg_home from '../../assets/img/house.jpg';
     import jpg_road from '../../assets/img/road.jpg';
     import jpg_plane from '../../assets/img/plane.jpg';
@@ -88,6 +121,8 @@
         name: "DiarySelect",
         data() {
             return {
+                addDialog: false,
+                newIdea: '',
                 model: 0,
                 colors: [
                     'primary',
@@ -129,20 +164,37 @@
                 this.editedItem = Object.assign({}, record);
                 this.editIndex = index;
             },
-            close() {
-                this.dialog = false;
+            close(add) {
+                if (add) {
+                    this.newIdea = '';
+                    this.addDialog = false;
+                } else {
+                    this.dialog = false;
+                }
             },
 
-            save() {
+            save(add) {
                 let self = this;
-                diaryUpdate(this.editedItem, (json) => {
-                    self.$msg.success(json.message);
-                    Object.assign(self.records[self.editIndex], self.editedItem);
-                    console.log(self.records);
-                }, ((json) => {
-                    self.$msg.error(json.message);
-                }));
-                self.dialog = false;
+                if (add) {
+                    let params = {
+                        idea: self.newIdea
+                    };
+                    diaryInsert(params, (json) => {
+                        self.$msg.success(json.message);
+                        self.newIdea = '';
+                    }, ((json) => {
+                        self.$msg.error(json.message);
+                    }));
+                    self.addDialog = false;
+                } else {
+                    diaryUpdate(this.editedItem, (json) => {
+                        self.$msg.success(json.message);
+                        Object.assign(self.records[self.editIndex], self.editedItem);
+                    }, ((json) => {
+                        self.$msg.error(json.message);
+                    }));
+                    self.dialog = false;
+                }
             },
             prevPage: function () {
                 if (this.pageNum <= 1) {
