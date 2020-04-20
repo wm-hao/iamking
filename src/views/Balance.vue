@@ -1,5 +1,7 @@
 <template>
-    <div>balance</div>
+    <v-row>
+
+    </v-row>
 </template>
 
 <script>

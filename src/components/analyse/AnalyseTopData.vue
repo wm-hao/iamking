@@ -1,22 +1,22 @@
 <template>
-    <v-row class="fill-height">
+    <v-row class="fill-height" no-gutters>
         <v-col cols="6">
-            <v-card class="ma-4" elevation="3">
+            <v-card class="ma-2" elevation="3">
                 <div id="top" :style="style"></div>
             </v-card>
         </v-col>
         <v-col cols="6">
-            <v-card class="ma-4" elevation="3">
+            <v-card class="ma-2" elevation="3">
                 <div id="bottom" :style="style"></div>
             </v-card>
         </v-col>
         <v-col cols="6">
-            <v-card class="ma-4" elevation="3">
+            <v-card class="ma-2" elevation="3">
                 <div id="count" :style="style"></div>
             </v-card>
         </v-col>
         <v-col cols="6">
-            <v-card class="ma-4" elevation="3">
+            <v-card class="ma-2" elevation="3">
                 <div id="compare" :style="style"></div>
             </v-card>
         </v-col>

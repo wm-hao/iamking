@@ -131,6 +131,9 @@ export function createBaseBar(category, data, id, config, vertical) {
     }
     if (vertical) {
         options.yAxis.data = category;
+        options.grid = {
+            left: '20%'
+        }
     } else {
         options.xAxis.data = category;
     }
